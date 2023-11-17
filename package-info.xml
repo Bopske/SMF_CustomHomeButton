@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>@rjen:customhomebutton</id>
+	<name>Custom Home Button</name>
+	<version>1.0</version>
+	<type>modification</type>
+	
+	<install for="2.1.* - 2.1.99">
+		<readme parsebbc="true">readme.txt</readme>
+		<require-dir name="languages" destination="$themedir" />
+		<require-file name="customhomebutton.php" destination="$sourcedir" />
+		<hook hook="integrate_menu_buttons" function="customhomebutton" file="$sourcedir/customhomebutton.php" />
+		<hook hook="integrate_current_action" function="customhomeaction" file="$sourcedir/customhomebutton.php" />
+		<hook hook="integrate_general_mod_settings" function="customhomebutton_settings" file="$sourcedir/customhomebutton.php" />
+		<hook hook="integrate_credits" function="customhomebutton_credits" file="$sourcedir/customhomebutton.php" />
+		<redirect url="?action=admin;area=modsettings;sa=general" timeout="5000" />Installed!</redirect>
+	</install>
+
+	<uninstall for="2.1.* - 2.1.99">
+		<remove-file name="$sourcedir/customhomebutton.php" />
+		<remove-file name="$languagedir/customhomebutton.english.php" />
+		<remove-file name="$languagedir/customhomebutton.dutch.php" />
+		<hook hook="integrate_menu_buttons" function="customhomebutton" file="$sourcedir/customhomebutton.php" reverse="true" />
+		<hook hook="integrate_current_action" function="customhomeaction" file="$sourcedir/customhomebutton.php" reverse="true" />
+		<hook hook="integrate_general_mod_settings" function="customhomebutton_settings" file="$sourcedir/customhomebutton.php" reverse="true" />
+		<hook hook="integrate_credits" function="customhomebutton_credits" file="$sourcedir/customhomebutton.php" reverse="true" />
+	</uninstall>
+	
+</package-info>
